@@ -1,0 +1,10 @@
+.wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    canvas {
+        box-shadow: 0 0 15px 5px rgba(#000, .3);
+    }
+}
