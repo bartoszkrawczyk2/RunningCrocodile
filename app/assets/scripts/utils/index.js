@@ -10,13 +10,13 @@ export async function loadAssets(assets = {}) {
 
     try {
         for (let key in assets) {
-           loadedAssets[key] = [];
+            loadedAssets[key] = [];
 
-           for (let asset of assets[key]) {
+            for (let asset of assets[key]) {
                 loadedAssets[key] = [...loadedAssets[key], await loadImage(asset)];
             }
         }
-        
+
         return loadedAssets;
     } catch(e) {
         return new Error('Failed to load assets');
