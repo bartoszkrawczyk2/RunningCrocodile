@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import { loadAssets } from './utils';
 import Player from './classes/player';
 import Game from './classes/game';
@@ -46,7 +47,7 @@ let game = new Game(canvas.width + 50);
 // ----------------------------------------------------------------
 // ----------------------------------------------------------------
 
-loadAssets(assets, (loadedAssets) => {
+loadAssets(assets).then(loadedAssets => {
     let { cactus, playerIdle, playerDie, playerJumpUp, playerJumpDown, playerRun } = loadedAssets;
     let player = new Player({ playerIdle, playerDie, playerJumpUp, playerJumpDown, playerRun });
     let startBlock = false;

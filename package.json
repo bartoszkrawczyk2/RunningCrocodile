@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/bartoszkrawczyk2/RunningCrocodile#readme",
   "devDependencies": {
+    "babel-plugin-transform-es2015-for-of": "^6.8.0",
+    "babel-polyfill": "^6.13.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-1": "^6.5.0",
     "babelify": "^6.4.0",

@@ -18,6 +18,7 @@ gulp.task('scripts', function () {
     var result = browserify({
         entries    : config.path.scripts.entry,
         extensions : ['.jsx'],
+        plugins: ['babel-plugin-transform-es2015-for-of'],
         debug      : true
     })
     .transform(scssify, {

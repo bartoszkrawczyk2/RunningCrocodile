@@ -1,24 +1,24 @@
-export const loadAssets = (assets = {}, callback = () => {}) => {
-    let loadedAssets = {}, assetCount = 0, loadedAssetsCount = 0;
+let loadImage = url => new Promise((resolve, reject) => {
+    let img = new Image();
+    img.onload = resolve(img);
+    img.onerror = reject(img);
+    img.src = url;
+});
 
-    for (let key in assets) {
-        assetCount += assets[key].length;
-    }
+export async function loadAssets(assets = {}) {
+    let loadedAssets = {};
 
-    for (let key in assets) {
-        loadedAssets[key] = [];
+    try {
+        for (let key in assets) {
+           loadedAssets[key] = [];
 
-        for (let i = 0; i < assets[key].length; i++) {
-            let img = new Image();
-
-            img.onload = () => {
-                loadedAssets[key][i] = img;
-                loadedAssetsCount++;
-
-                if (loadedAssetsCount === assetCount) callback.call(null, loadedAssets);
+           for (let asset of assets[key]) {
+                loadedAssets[key] = [...loadedAssets[key], await loadImage(asset)];
             }
-
-            img.src = assets[key][i];
         }
-    }
-}
+        
+        return loadedAssets;
+    } catch(e) {
+        return new Error('Failed to load assets');
+    };
+};
